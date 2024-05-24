@@ -58,13 +58,18 @@ h1 {
 }
 
 header {
-    margin-bottom: 1rem; /* Adiciona margem inferior ao header */
+    margin-bottom: 1rem;
+}
+
+main {
+    margin-top: 2rem;
 }
 
 #bloco-botao-prox {
     display: flex;
     justify-content: right;
     margin: 1.5rem;
+    gap: 10px;
 }
 
 #linha-horizontal {
@@ -89,10 +94,6 @@ header {
     padding: 2rem; /* Adiciona espaçamento interno */
 }
 
-main {
-    margin-top: 2rem; /* Adiciona margem superior ao main */
-}
-
 #bloco-opcoes {
     display: flex;
     gap: 2rem;
@@ -108,8 +109,10 @@ main {
     transition: 1s ease;
 }
 
-.button-navegation:hover {
+.button-navegation.pagina-atual {
     background-color: var(--cor1);
     box-shadow: 1px 1px 5px var(--cor2);
     border-radius: 15px;
 }
+
+

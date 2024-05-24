@@ -12,6 +12,7 @@
         <div id="cabecalho">
             <h1>FORMULÁRIO DE REGISTRO DE VIAGEM</h1>
             <div id="bloco-botao-prox">
+                <span id="botao-ant" style="display: none;"><i class="bi bi-arrow-left-square"></i></span>
                 <span id="botao-prox"><i class="bi bi-arrow-right-square"></i></span>
             </div>
         </div>
@@ -20,41 +21,16 @@
     <main>
         <section id="corpo-principal">
             <div id="bloco-opcoes">
-                <button type="button" class="button-navegation">Diário de borda puxada</button>
-                <button type="button" class="button-navegation">Trajeto de ida para a fábrica</button>
-                <button type="button" class="button-navegation">Chegada ao destino</button>
-                <button type="button" class="button-navegation">Trajeto de volta para a fábrica</button>
+                <button type="button" class="button-navegation" data-pagina="pagina1">Diário de borda puxada</button>
+                <button type="button" class="button-navegation" data-pagina="pagina2">Trajeto de ida para a fábrica</button>
+                <button type="button" class="button-navegation" data-pagina="pagina3">Chegada ao destino</button>
+                <button type="button" class="button-navegation" data-pagina="pagina4">Trajeto de volta para a fábrica</button>
             </div>
             <div id="bloco-diario-borda">
                 <!--Essa parte ira mudar de acordo com o clicar do botão de próximo-->
-                <div>
-                    <label for=""></label>
-                    <input type="text" name="" id="">
-                    <label for=""></label>
-                    <input type="text" name="" id="">
-                    <select name="" id="">
-                        <option value=""></option>
-                    </select>
-                    <select name="" id="">
-                        <option value=""></option>
-                    </select>
-                </div>
-                <div>
-                    <select name="" id="">
-                        <option value=""></option>
-                    </select>
-                    <select name="" id="">
-                        <option value=""></option>
-                    </select>
-                    <select name="" id="">
-                        <option value=""></option>
-                    </select>
-                    <select name="" id="">
-                        <option value=""></option>
-                    </select>
-                </div>
             </div>
         </section>
     </main>
+    <script src="js/clientController.js"></script>
 </body>
 </html>
