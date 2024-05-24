@@ -1,0 +1,115 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+    --cor1: #2450A6;
+    --cor2: #3C5FA6;
+    --cor3: #6382BF;
+    --cor4: #F2F2F2;
+    --cor5: #FFFFFF;
+}
+
+/* Para dispositivos móveis */
+@media (max-width: 600px) {
+    #corpo-principal {
+        min-height: 70vh; /* Altura mínima para dispositivos móveis */
+        align-items: flex-start; /* Alinha os itens no início */
+    }
+
+    #bloco-opcoes {
+        flex-direction: column; /* Alinha os botões verticalmente */
+        align-items: center; /* Alinha os botões horizontalmente */
+        gap: 1rem; /* Espaçamento entre os botões */
+    }
+
+    #bloco-diario-borda {
+        width: 100%; /* Define a largura total */
+    }
+}
+
+/* Para telas maiores */
+@media (min-width: 601px) {
+    #corpo-principal {
+        min-height: 70vh; /* Altura automática para telas maiores */
+    }
+
+    #bloco-opcoes {
+        flex-direction: row; /* Alinha os botões horizontalmente */
+        align-items: center; /* Alinha os botões verticalmente */
+        gap: 2rem; /* Espaçamento entre os botões */
+    }
+
+    #bloco-diario-borda {
+        width: 100%; /* Define a largura total */
+    }
+}
+
+body {
+    width: 100%;
+    background-color: var(--cor1);
+}
+
+h1 {
+    margin-top: 2rem;
+    text-align: center;
+    color: var(--cor5);
+}
+
+header {
+    margin-bottom: 1rem; /* Adiciona margem inferior ao header */
+}
+
+#bloco-botao-prox {
+    display: flex;
+    justify-content: right;
+    margin: 1.5rem;
+}
+
+#linha-horizontal {
+    background-color: var(--cor5);
+    min-height: 1rem; /* Define uma altura mínima */
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.349);
+    margin-bottom: 2rem; /* Adiciona margem inferior para separar do main */
+}
+
+#corpo-principal {
+    background-color: var(--cor5);
+    border-radius: 0.8rem;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.349);
+    display: flex;
+    gap: 2.5rem;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 80%; /* Define uma largura específica */
+    max-width: 1200px; /* Define uma largura máxima */
+    margin: 0 auto; /* Centraliza o elemento */
+    padding: 2rem; /* Adiciona espaçamento interno */
+}
+
+main {
+    margin-top: 2rem; /* Adiciona margem superior ao main */
+}
+
+#bloco-opcoes {
+    display: flex;
+    gap: 2rem;
+}
+
+.button-navegation {
+    all: unset;
+    color: var(--cor5);
+    background-color: var(--cor3);
+    padding: 0.5rem;
+    border-radius: 8px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.349);
+    transition: 1s ease;
+}
+
+.button-navegation:hover {
+    background-color: var(--cor1);
+    box-shadow: 1px 1px 5px var(--cor2);
+    border-radius: 15px;
+}
