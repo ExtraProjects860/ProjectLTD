@@ -1,12 +1,15 @@
+const ConnectionDatabase = require("./ConnectionDatabase");
 
 class EdgeDiary {
-    constructor() {
-        this.travelDate = null;
-        this.start = null;
-        this.warehouse = null;
-        this.factory = null;
-        this.horse = null;
-        this.cart = null;
+    constructor(formData) {
+        this.db = new ConnectionDatabase();
+        this.travelDate = formData.travelDate;
+        this.start = formData.start;
+        this.driver = formData.driver;
+        this.warehouse = formData.warehouse;
+        this.factory = formData.factory;
+        this.horse = formData.horse;
+        this.cart = formData.cart;
     }
 
     getTravelDate() {
@@ -15,6 +18,10 @@ class EdgeDiary {
 
     getStart() {
         return this.start;
+    }
+
+    getDriver() {
+        return this.driver;
     }
 
     getWarehouse() {
@@ -32,4 +39,41 @@ class EdgeDiary {
     getCart() {
         return this.cart;
     }
+
+    async insertDataEdgeDiary(tripId) {
+        try {
+            await this.db.connect();
+
+            const sql = `INSERT INTO Diario_de_Borda 
+            (id_viagem, data_viagem, inicio, motorista, deposito, fabrica, cavalo, carreta) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
+
+            const values = [
+                tripId,
+                this.getTravelDate(),
+                this.getStart(),
+                this.getDriver(),
+                this.getWarehouse(),
+                this.getFactory(),
+                this.getHorse(),
+                this.getCart()
+            ];
+
+            console.log("Valores Diario de borda " + values);
+
+            const [result] = await this.db.query(sql, values);
+
+            if (result.affectedRows === 1) {
+                return result.insertId;
+            } else {
+                return false;
+            }
+        } catch (error) {
+            throw error;
+        } finally {
+            await this.db.close();
+        }
+    }
 }
+
+module.exports = EdgeDiary;

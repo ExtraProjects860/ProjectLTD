@@ -4,8 +4,10 @@ class ClientController {
         this.botaoAnterior = document.getElementById("botao-ant");
         this.blocoDiarioBorda = document.getElementById("bloco-principal");
         this.blocoBotaoProx = document.getElementById("bloco-botao-prox");
+        this.formRegistro = document.getElementById('formRegistro');
         this.paginaAtual = "pagina1";
         this.botaoSalvar = document.getElementById("btn-save");
+
         this.botaoSalvar.addEventListener("click", () => {
             this.mostrarPopup();
         });
@@ -13,49 +15,51 @@ class ClientController {
         this.btnCancel = document.getElementById("cancelar");
         this.btnConfirmar = document.getElementById("confirmar");
         this.btnClose = document.getElementsByClassName("close")[0];
+        this.timetOutTransitions = 300;
 
+        this.dadosFormulario = {}; 
 
         this.conteudos = {
             pagina1: `
             <div class="row">
                 <div class="col">
-                    <label for="">Data Viagem</label>
-                    <input type="date" name="" id="">
+                    <label for="dataViagem1">Data Viagem</label>
+                    <input type="date" name="dataViagem1" id="dataViagem1">
                 </div>
                 <div class="col">
-                    <label for="">Inicio</label>
-                    <input type="time" name="" id="">
+                    <label for="inicio1">Inicio</label>
+                    <input type="time" name="inicio1" id="inicio1">
                 </div>
                 <div class="col">
-                    <label for="">Motorista</label>
-                    <select name="" id="">
-                        <option value=""></option>
+                    <label for="motorista1">Motorista</label>
+                    <select name="motorista1" id="motorista1">
+                        <option value="">teste</option>
                     </select>
                 </div>
                 <div class="col">
-                    <label for="">Depósito</label>
-                    <select name="" id="">
-                        <option value=""></option>
+                    <label for="deposito1">Depósito</label>
+                    <select name="deposito1" id="deposito1">
+                        <option value="">teste</option>
                     </select>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                    <label for="">Fábrica</label>
-                    <select name="" id="">
-                        <option value=""></option>
+                    <label for="fabrica1">Fábrica</label>
+                    <select name="fabrica1" id="fabrica1">
+                        <option value="">teste</option>
                     </select>
                 </div>
                 <div class="col">
-                    <label for="">Cavalo</label>
-                    <select name="" id="">
-                        <option value=""></option>
+                    <label for="cavalo1">Cavalo</label>
+                    <select name="cavalo1" id="cavalo1">
+                        <option value="">teste</option>
                     </select>
                 </div>
                 <div class="col">
-                    <label for="">Carreta</label>
-                    <select name="" id="">
-                        <option value=""></option>
+                    <label for="carreta1">Carreta</label>
+                    <select name="carreta1" id="carreta1">
+                        <option value="">teste</option>
                     </select>
                 </div>
             </div>    
@@ -64,64 +68,64 @@ class ClientController {
             pagina2: `
             <div class="row">
                 <div class="col">
-                    <label for="">Parada 1</label>
-                    <select name="parada1" id="">
-                        <option value=""></option>
+                    <label for="parada1_p2">Parada 1</label>
+                    <select name="parada1_p2" id="parada1_p2">
+                        <option value="">teste</option>
                     </select>
                 </div>
                 <div class="col">
-                    <label for="">Parada 2</label>
-                    <select name="" id="">
-                        <option value=""></option>
+                    <label for="parada2_p2">Parada 2</label>
+                    <select name="parada2_p2" id="parada2_p2">
+                        <option value="">teste</option>
                     </select>
                 </div>
                 <div class="col">
-                    <label for="">Parada 3</label>
-                    <select name="" id="">
-                        <option value=""></option>
+                    <label for="parada3_p2">Parada 3</label>
+                    <select name="parada3_p2" id="parada3_p2">
+                        <option value="">teste</option>
                     </select>
                 </div>
                 <div class="col">
-                        <label for="">Parada 4</label>
-                        <select name="" id="">
-                            <option value=""></option>
+                        <label for="parada4_p2">Parada 4</label>
+                        <select name="parada4_p2" id="parada4_p2">
+                            <option value="">teste</option>
                         </select>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                    <label for="">Inicio</label>
-                    <input type="time" name="inicio1" id="inicio1">
+                    <label for="inicio1_p2">Inicio</label>
+                    <input type="time" name="inicio1_p2" id="inicio1_p2">
                 </div>
                 <div class="col">
-                    <label for="">Inicio</label>
-                    <input type="time" name="inicio2" id="inicio2">
+                    <label for="inicio2_p2">Inicio</label>
+                    <input type="time" name="inicio2_p2" id="inicio2_p2">
                 </div>
                 <div class="col">
-                    <label for="">Inicio</label>
-                    <input type="time" name="inicio3" id="inicio3">
+                    <label for="inicio3_p2">Inicio</label>
+                    <input type="time" name="inicio3_p2" id="inicio3_p2">
                 </div>
                 <div class="col">
-                    <label for="">Inicio</label>
-                    <input type="time" name="inicio4" id="inicio4">
+                    <label for="inicio4_p2">Inicio</label>
+                    <input type="time" name="inicio4_p2" id="inicio4_p2">
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                    <label for="">Fim</label>
-                    <input type="time" name="fim1" id="fim1">
+                    <label for="fim1_p2">Fim</label>
+                    <input type="time" name="fim1_p2" id="fim1_p2">
                 </div>
                 <div class="col">
-                    <label for="">Fim</label>
-                    <input type="time" name="fim2" id="fim2">
+                    <label for="fim2_p2">Fim</label>
+                    <input type="time" name="fim2_p2" id="fim2_p2">
                 </div>
                 <div class="col">
-                    <label for="">Fim</label>
-                    <input type="time" name="fim3" id="fim3">
+                    <label for="fim3_p2">Fim</label>
+                    <input type="time" name="fim3_p2" id="fim3_p2">
                 </div>
                 <div class="col">
-                    <label for="">Fim</label>
-                    <input type="time" name="fim4" id="fim4">
+                    <label for="fim4_p2">Fim</label>
+                    <input type="time" name="fim4_p2" id="fim4_p2">
                 </div>
             </div>
             <div>
@@ -130,59 +134,48 @@ class ClientController {
             pagina3: `
             <div class="row">
                 <div class="col">
-                    <label for="">Refeição</label>
-                    <select name="refeicao" id="refeicao">
-                        <option value=""></option>
+                    <label for="refeicao3">Refeição</label>
+                    <select name="refeicao3" id="refeicao3">
+                        <option value="">teste</option>
                     </select>
                 </div>
                 <div class="col">
-                    <label for="">Tempo de espera</label>
-                    <select name="tempoEspera" id="tempoEspera">
-                        <option value=""></option>
+                    <label for="tempoEspera3">Tempo de espera</label>
+                    <select name="tempoEspera3" id="tempoEspera3">
+                        <option value="">teste</option>
                     </select>
                 </div>
                 <div class="col">
-                    <label for="">Encerramento de viagem</label>
-                    <label for="">Retorno</label>
-                    <select name="retorno" id="retorno">
-                        <option value=""></option>
-                    </select>
-                </div>
-                <div class="col">
-                        <label for="">Id viagem</label>
-                        <input type="text" name="idViagem" id="idViagem">
+                    <label for="retorno3">Encerramento de viagem <br> Retorno</label>
+                    <input type="date" name="retorno3" id="retorno3">
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                    <label for="">Inicio</label>
-                    <input type="time" name="inicio1" id="inicio1">
+                    <label for="inicio1_p3">Inicio</label>
+                    <input type="time" name="inicio1_p3" id="inicio1_p3">
                 </div>
                 <div class="col">
-                    <label for="">Inicio</label>
-                    <input type="time" name="inicio2" id="inicio2">
+                    <label for="inicio2_p3">Inicio</label>
+                    <input type="time" name="inicio2_p3" id="inicio2_p3">
                 </div>
                 <div class="col">
-                    <label for="">Hora</label>
-                    <input type="time" name="hora" id="hora">
-                </div>
-                <div class="col">
-                    
+                    <label for="hora3">Hora</label>
+                    <input type="time" name="hora3" id="hora3">
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                    <label for="">Fim</label>
-                    <input type="time" name="fim1" id="fim1">
+                    <label for="fim1_p3">Fim</label>
+                    <input type="time" name="fim1_p3" id="fim1_p3">
                 </div>
                 <div class="col">
-                    <label for="">Fim</label>
-                    <input type="time" name="fim2" id="fim2">
+                    <label for="fim2_p3">Fim</label>
+                    <input type="time" name="fim2_p3" id="fim2_p3">
                 </div>
                 <div class="col">
-                </div>
-                <div class="col">
-                    
+                    <label for="idViagem3">Id viagem</label>
+                    <input type="text" name="idViagem3" id="idViagem3">
                 </div>
             </div>
             `,
@@ -190,64 +183,64 @@ class ClientController {
             pagina4: `
             <div class="row">
             <div class="col">
-                <label for="">Parada 1</label>
-                <select name="parada1" id="">
-                    <option value=""></option>
+                <label for="parada1_p4">Parada 1</label>
+                <select name="parada1_p4" id="parada1_p4">
+                    <option value="">teste</option>
                 </select>
             </div>
             <div class="col">
-                <label for="">Parada 2</label>
-                <select name="" id="">
-                    <option value=""></option>
+                <label for="parada2_p4">Parada 2</label>
+                <select name="parada2_p4" id="parada2_p4">
+                    <option value="">teste</option>
                 </select>
             </div>
             <div class="col">
-                <label for="">Parada 3</label>
-                <select name="" id="">
-                    <option value=""></option>
+                <label for="parada3_p4">Parada 3</label>
+                <select name="parada3_p4" id="parada3_p4">
+                    <option value="">teste</option>
                 </select>
             </div>
             <div class="col">
-                    <label for="">Parada 4</label>
-                    <select name="" id="">
-                        <option value=""></option>
+                    <label for="parada4_p4">Parada 4</label>
+                    <select name="parada4_p4" id="parada4_p4">
+                        <option value="">teste</option>
                     </select>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <label for="">Inicio</label>
-                <input type="time" name="inicio1" id="inicio1">
+                <label for="inicio1_p4">Inicio</label>
+                <input type="time" name="inicio1_p4" id="inicio1_p4">
             </div>
             <div class="col">
-                <label for="">Inicio</label>
-                <input type="time" name="inicio2" id="inicio2">
+                <label for="inicio2_p4">Inicio</label>
+                <input type="time" name="inicio2_p4" id="inicio2_p4">
             </div>
             <div class="col">
-                <label for="">Inicio</label>
-                <input type="time" name="inicio3" id="inicio3">
+                <label for="inicio3_p4">Inicio</label>
+                <input type="time" name="inicio3_p4" id="inicio3_p4">
             </div>
             <div class="col">
-                <label for="">Inicio</label>
-                <input type="time" name="inicio4" id="inicio4">
+                <label for="inicio4_p4">Inicio</label>
+                <input type="time" name="inicio4_p4" id="inicio4_p4">
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <label for="">Fim</label>
-                <input type="time" name="fim1" id="fim1">
+                <label for="fim1_p4">Fim</label>
+                <input type="time" name="fim1_p4" id="fim1_p4">
             </div>
             <div class="col">
-                <label for="">Fim</label>
-                <input type="time" name="fim2" id="fim2">
+                <label for="fim2_p4">Fim</label>
+                <input type="time" name="fim2_p4" id="fim2_p4">
             </div>
             <div class="col">
-                <label for="">Fim</label>
-                <input type="time" name="fim3" id="fim3">
+                <label for="fim3_p4">Fim</label>
+                <input type="time" name="fim3_p4" id="fim3_p4">
             </div>
             <div class="col">
-                <label for="">Fim</label>
-                <input type="time" name="fim4" id="fim4">
+                <label for="fim4_p4">Fim</label>
+                <input type="time" name="fim4_p4" id="fim4_p4">
             </div>
         </div>
         <div>
@@ -278,6 +271,19 @@ class ClientController {
         fade();
     }
 
+    fadeOut(element) {
+        let opacity = 1;
+        const fadeInterval = setInterval(() => {
+            if (opacity <= 0.1) {
+                clearInterval(fadeInterval);
+                element.style.display = "none";
+            } else {
+                opacity -= 0.1;
+                element.style.opacity = opacity;
+            }
+        }, 50);
+    }
+
     atualizarEstiloNavegacao() {
         const botoesNavegacao = document.querySelectorAll(".button-navegation");
         botoesNavegacao.forEach((botao) => {
@@ -290,13 +296,18 @@ class ClientController {
             botaoAtual.classList.add("pagina-atual");
         }
         if (this.paginaAtual === "pagina4") {
+            this.botaoSalvar.style.cursor = "pointer";
             this.botaoSalvar.disabled = false; // Habilita o botão de salvar
+            this.botaoSalvar.classList.add("hover-efect");
         } else {
+            this.botaoSalvar.style.cursor = "auto";
             this.botaoSalvar.disabled = true; // Desabilita o botão de salvar
+            this.botaoSalvar.classList.remove("hover-efect");
         }
     }
 
     proximaPagina() {
+        this.armazenarDados();
         switch (this.paginaAtual) {
             case "pagina1":
                 this.paginaAtual = "pagina2";
@@ -315,10 +326,11 @@ class ClientController {
         setTimeout(() => {
             this.fadeIn(this.blocoDiarioBorda);
             this.mostrarConteudo();
-        }, 100);
+        }, this.timetOutTransitions);
     }
 
     paginaAnterior() {
+        this.armazenarDados();
         switch (this.paginaAtual) {
             case "pagina2":
                 this.paginaAtual = "pagina1";
@@ -337,35 +349,90 @@ class ClientController {
         setTimeout(() => {
             this.fadeIn(this.blocoDiarioBorda);
             this.mostrarConteudo();
-        }, 100);
+        }, this.timetOutTransitions);
     }
 
     mostrarConteudo() {
         this.blocoDiarioBorda.innerHTML = this.conteudos[this.paginaAtual];
+        this.preencherDados();
+    }
+
+    armazenarDados() {
+        const inputs = this.blocoDiarioBorda.querySelectorAll("input, select, textarea");
+        inputs.forEach((input) => {
+            this.dadosFormulario[input.name] = input.value;
+        });
+    }
+
+    preencherDados() {
+        const inputs = this.blocoDiarioBorda.querySelectorAll("input, select, textarea");
+        inputs.forEach((input) => {
+            if (this.dadosFormulario[input.name]) {
+                input.value = this.dadosFormulario[input.name];
+            }
+        });
     }
 
     mostrarPopup() {
-        this.modal.style.display = "block";
-        this.btnConfirmar.addEventListener("click", () => {
-            console.log("Dados salvos!");
-            this.fecharPopup();
-        });
-        this.btnCancel.addEventListener("click", () => {
-            console.log("Ação de salvar cancelada pelo usuário."); // Ação cancelada pelo usuário
-            this.fecharPopup();
-        });
-        this.btnClose.addEventListener("click", () => {
-            this.fecharPopup();
-        });
-    }
-    fecharPopup() {
-        this.modal.style.display = "none";
-        this.btnConfirmar.removeEventListener("click", null);
-        this.btnCancel.removeEventListener("click", null);
+        setTimeout(() => {
+            this.fadeIn(this.modal);
+            this.modal.style.display = "block";
+
+            this.btnConfirmar.addEventListener("click", this.enviarFormulario.bind(this));
+            this.btnCancel.addEventListener("click", this.fecharPopup.bind(this));
+            this.btnClose.addEventListener("click", this.fecharPopup.bind(this));
+        }, this.timetOutTransitions);
     }
 
-    
-    
+    async enviarFormulario() {
+        const formData = new FormData();
+        for (const key in this.dadosFormulario) {
+            formData.append(key, this.dadosFormulario[key]);
+        }
+
+        console.log('Dados do formulário enviados:', Object.fromEntries(formData.entries()));
+
+        try {
+            const response = await fetch(this.formRegistro.action, {
+                method: 'POST',
+                body: formData
+            });
+
+            if (response.ok) {
+                this.fecharPopup();
+                this.resetFormulario();
+                window.location.reload();
+            } else {
+                console.error('Erro ao enviar formulário', response.statusText);
+            }
+        } catch (error) {
+            console.error('Erro ao enviar formulário', error);
+        }
+    }
+
+    resetFormulario() {
+        this.formRegistro.reset();
+        this.dadosFormulario = {}; 
+        this.paginaAtual = "pagina1";
+        this.atualizarEstiloNavegacao();
+        this.mostrarConteudo();
+        this.botaoAnterior.style.display = "none";
+        this.botaoProximo.style.display = "flex";
+    }
+
+    limparEventosPopup() {
+        this.btnConfirmar.removeEventListener("click", this.enviarFormulario.bind(this));
+        this.btnCancel.removeEventListener("click", this.fecharPopup.bind(this));
+        this.btnClose.removeEventListener("click", this.fecharPopup.bind(this));
+    }
+
+    fecharPopup() {
+        this.fadeOut(this.modal);
+        setTimeout(() => {
+            this.modal.style.display = "none";
+            this.limparEventosPopup();
+        }, 250);
+    }
 }
 
 document.addEventListener("DOMContentLoaded", function () {

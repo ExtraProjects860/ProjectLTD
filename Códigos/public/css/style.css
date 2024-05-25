@@ -175,8 +175,15 @@ main {
     width: 25vh;
     border-radius: 3vh;
     background-color: #8BD9CA;
+    color: var(--cor5);
     margin-left: 77%;
     border: none;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.349);
+    transition: 1s ease;
+}
+
+.hover-efect:hover {
+    background-color: #7cc0b2 !important;
 }
 
 /* Estilo para o modal */
@@ -223,7 +230,12 @@ main {
     border-radius: 1vh;
     height: 3vh;
     width: 14vh;
-    background-color: #8BD9CA;
+    background-color: #FE787F;
+    transition: 1s ease;
+  }
+
+  #cancelar:hover {
+    background-color: #db686e;
   }
 
   #confirmar {
@@ -233,11 +245,24 @@ main {
     width: 14vh;
     margin: 0 1vh;
     background-color: #8BD9CA;
+    transition: 1s ease;
+  }
+
+  #confirmar:hover {
+    background-color: #7cc0b2;
   }
 
   .btns{
     display: flex;
     justify-content: center;
+    gap: 3.5rem;
+    color: var(--cor5);
   }
   
+  .botao-popup-estilo {
+    color: white;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.349);
+    cursor: pointer;
+  }
+
   

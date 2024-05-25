@@ -31,19 +31,18 @@
             </div>
             <button type="button" class="button-save" id="btn-save">Gravar</button>
             <!-- Popup Modal -->
-            <form method="post" action="/registrar">
+            <form id="formRegistro" method="post" action="/registrar">
                 <div id="modal" class="modal">
                     <div class="modal-content">
                     <span class="close">&times;</span>
                     <p>Tem certeza que deseja salvar os dados?</p>
                     <div class="btns">
-                        <button id="confirmar" type="submit">Sim</button>
-                        <button id="cancelar">Cancelar</button>
+                        <button id="confirmar" type="button" class="botao-popup-estilo">Sim</button>
+                        <button id="cancelar" type="button" class="botao-popup-estilo">Cancelar</button>
                     </div>
                     </div>
                 </div>
             </form>
-  
         </section>
     </main>
     <script src="js/clientController.js"></script>

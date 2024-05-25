@@ -1,9 +1,23 @@
+const ConnectionDatabase = require("./ConnectionDatabase");
+
 class ArrivalDestination {
-    constructor() {
-        this.meal = { type: null, start: null, end: null };
-        this.waitingTime = { type: null, start: null, end: null };
-        this.tripClosure = { retorno: null, hour: null };
-        this.tripId = null;
+    constructor(formData) {
+        this.db = new ConnectionDatabase();
+        this.meal = {
+            type: formData.mealType,
+            start: formData.mealStart,
+            end: formData.mealEnd
+        };
+        this.waitingTime = {
+            type: formData.waitingTimeType,
+            start: formData.waitingTimeStart,
+            end: formData.waitingTimeEnd
+        };
+        this.tripClosure = {
+            retorno: formData.tripClosureRetorno,
+            hour: formData.tripClosureHour
+        };
+        this.tripId = formData.tripId;
     }
 
     getMeal() {
@@ -53,4 +67,45 @@ class ArrivalDestination {
     getTripId() {
         return this.tripId;
     }
+
+    async insertDataArrivalDestination() {
+        try {
+            await this.db.connect();
+
+            const sql = `INSERT INTO Chegada_Destino 
+            (id_viagem, refeicao_tipo, refeicao_inicio, refeicao_fim, tempo_espera_tipo, tempo_espera_inicio, tempo_espera_fim, retorno, hora) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);`
+            
+            const values = [
+                this.getTripId(),
+                this.getMeal().type,
+                this.getMeal().start,
+                this.getMeal().end,
+                this.getWaitingTime().type,
+                this.getWaitingTime().start,
+                this.getWaitingTime().end,
+                this.getTripClosure().retorno,
+                this.getTripClosure().hour
+            ];
+
+            console.log("Valores Chegada de Destino " + values);
+
+            const result =  await this.db.query(sql, values);
+
+            if (result.affectedRows === 1) {
+                const lastInsertIdResult = await this.db.query('SELECT LAST_INSERT_ID() as id');
+                const lastInsertId = lastInsertIdResult[0].id;
+                return lastInsertId;
+            } else {
+                return false;
+            }
+
+        } catch (error) {
+            throw error;
+        } finally {
+            this.db.close();
+        }
+    }
 }
+
+module.exports = ArrivalDestination;
