@@ -26,9 +26,24 @@
                 <button type="button" class="button-navegation" data-pagina="pagina3">Chegada ao destino</button>
                 <button type="button" class="button-navegation" data-pagina="pagina4">Trajeto de volta para a fábrica</button>
             </div>
-            <div id="bloco-diario-borda">
+            <div id="bloco-principal">
                 <!--Essa parte ira mudar de acordo com o clicar do botão de próximo-->
             </div>
+            <button type="button" class="button-save" id="btn-save">Gravar</button>
+            <!-- Popup Modal -->
+            <form method="post" action="/registrar">
+                <div id="modal" class="modal">
+                    <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p>Tem certeza que deseja salvar os dados?</p>
+                    <div class="btns">
+                        <button id="confirmar" type="submit">Sim</button>
+                        <button id="cancelar">Cancelar</button>
+                    </div>
+                    </div>
+                </div>
+            </form>
+  
         </section>
     </main>
     <script src="js/clientController.js"></script>

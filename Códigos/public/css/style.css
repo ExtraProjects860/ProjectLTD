@@ -22,11 +22,22 @@
         flex-direction: column; /* Alinha os botões verticalmente */
         align-items: center; /* Alinha os botões horizontalmente */
         gap: 1rem; /* Espaçamento entre os botões */
+        justify-content: center;
     }
+    
+    .button-save {
+        height: 3vh;
+        width: 15vh;
+    }
+    .col {
+        flex: 0 0 50%; /* Cada coluna ocupa 50% do espaço em telas menores */
+        max-width: 50%;
+      }
 
     #bloco-diario-borda {
         width: 100%; /* Define a largura total */
     }
+
 }
 
 /* Para telas maiores */
@@ -39,6 +50,8 @@
         flex-direction: row; /* Alinha os botões horizontalmente */
         align-items: center; /* Alinha os botões verticalmente */
         gap: 2rem; /* Espaçamento entre os botões */
+        margin-top: 35px;
+        justify-content: center;
     }
 
     #bloco-diario-borda {
@@ -66,6 +79,8 @@ main {
 }
 
 #bloco-botao-prox {
+    font-size: 24px;
+    color: white; 
     display: flex;
     justify-content: right;
     margin: 1.5rem;
@@ -86,17 +101,21 @@ main {
     display: flex;
     gap: 2.5rem;
     flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
     width: 80%; /* Define uma largura específica */
     max-width: 1200px; /* Define uma largura máxima */
     margin: 0 auto; /* Centraliza o elemento */
     padding: 2rem; /* Adiciona espaçamento interno */
 }
 
+.dataViagem {
+    display: flex;
+    flex-direction: column;
+}
+
 #bloco-opcoes {
     display: flex;
     gap: 2rem;
+    justify-content: center;
 }
 
 .button-navegation {
@@ -115,4 +134,110 @@ main {
     border-radius: 15px;
 }
 
+#bloco-principal {
+    margin: 10vh 10vh 0 10vh;
+}
 
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10vh;
+}
+
+.col {
+    flex: 1; /* Cada coluna ocupa a mesma largura */
+    margin-right: 15px; /* Espaçamento entre as colunas */
+}
+
+.col:last-child {
+    margin-right: 0; /* Remove o espaçamento na última coluna de cada linha */
+}
+
+.col label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.col input,
+.col select {
+    width: 85%;
+    padding: 8px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    border-radius: 2vh;
+    margin-top: 2vh;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.349);
+    border: none;
+}
+
+.button-save {
+    height: 4vh;
+    width: 25vh;
+    border-radius: 3vh;
+    background-color: #8BD9CA;
+    margin-left: 77%;
+    border: none;
+}
+
+/* Estilo para o modal */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%; 
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+  }
+  
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 35%;
+    border-radius: 2vh;
+    p{
+        margin: 0 0 2vh;
+    }
+  }
+  
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  #cancelar {
+    border: none;
+    border-radius: 1vh;
+    height: 3vh;
+    width: 14vh;
+    background-color: #8BD9CA;
+  }
+
+  #confirmar {
+    border: none;
+    border-radius: 1vh;
+    height: 3vh;
+    width: 14vh;
+    margin: 0 1vh;
+    background-color: #8BD9CA;
+  }
+
+  .btns{
+    display: flex;
+    justify-content: center;
+  }
+  
+  
