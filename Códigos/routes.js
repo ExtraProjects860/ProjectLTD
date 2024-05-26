@@ -1,20 +1,27 @@
 const express = require("express");
 const path = require("path");
-const bodyParser = require("body-parser");
+const multer = require("multer");
 const router = express.Router();
 const ArrivalDestination = require('./classes/ArrivalDestination');
 const EdgeDiary = require('./classes/EdgeDiary');
 const RouteToFactory = require('./classes/RouteToFactory');
 const RouteBackFactory = require('./classes/RouteBackFactory');
+const ConnectionDatabase = require('./classes/ConnectionDatabase');
 
-router.use(bodyParser.json());
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 
 router.get("/", (req, res) => {
   res.sendFile(path.join(__dirname + "index.html"));
 });
 
-router.post("/registrar", async (req, res) => {
+router.post("/registrar", upload.none(), async (req, res) => {
+  const db = new ConnectionDatabase();
+
   try {
+    await db.connect();
+    await db.beginTransaction();
+
     const formData = req.body;
 
     console.log('Dados recebidos:', formData);
@@ -27,7 +34,6 @@ router.post("/registrar", async (req, res) => {
       factory: formData.fabrica1,
       horse: formData.cavalo1,
       cart: formData.carreta1,
-      tripId: formData.idViagem3,
     });
 
     const routeToFactory = new RouteToFactory({
@@ -54,6 +60,7 @@ router.post("/registrar", async (req, res) => {
       waitingTimeEnd: formData.fim2_p3,
       tripClosureRetorno: formData.retorno3,
       tripClosureHour: formData.hora3,
+      tripId: formData.idViagem3,
     });
 
     const routeBackFactory = new RouteBackFactory({
@@ -71,16 +78,21 @@ router.post("/registrar", async (req, res) => {
       stop4End: formData.fim4_p4
     });
 
-    const tripId = await arrival.insertDataArrivalDestination();
-    await edgeDiary.insertDataEdgeDiary(tripId);
-    await routeToFactory.insertDataToFactory(tripId);
-    await routeBackFactory.insertDataBackFactory(tripId);
+    await arrival.insertDataArrivalDestination(db);
+    await edgeDiary.insertDataEdgeDiary(db, formData.idViagem3);
+    await routeToFactory.insertDataToFactory(db, formData.idViagem3);
+    await routeBackFactory.insertDataBackFactory(db, formData.idViagem3);
+
+    await db.commit();
 
     console.log("Dados inseridos com sucesso!");
     res.status(200).send("Submissão do formulário bem-sucedida");
 } catch (error) {
+    await db.rollback();
     console.error("Erro ao registrar os dados:", error);
     res.status(500).send("Ocorreu um erro ao processar a solicitação.");
+} finally {
+    await db.close();
 }
 });
 

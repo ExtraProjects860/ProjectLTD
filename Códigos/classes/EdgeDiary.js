@@ -1,8 +1,5 @@
-const ConnectionDatabase = require("./ConnectionDatabase");
-
 class EdgeDiary {
     constructor(formData) {
-        this.db = new ConnectionDatabase();
         this.travelDate = formData.travelDate;
         this.start = formData.start;
         this.driver = formData.driver;
@@ -40,10 +37,8 @@ class EdgeDiary {
         return this.cart;
     }
 
-    async insertDataEdgeDiary(tripId) {
+    async insertDataEdgeDiary(db, tripId) {
         try {
-            await this.db.connect();
-
             const sql = `INSERT INTO Diario_de_Borda 
             (id_viagem, data_viagem, inicio, motorista, deposito, fabrica, cavalo, carreta) 
             VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
@@ -61,17 +56,9 @@ class EdgeDiary {
 
             console.log("Valores Diario de borda " + values);
 
-            const [result] = await this.db.query(sql, values);
-
-            if (result.affectedRows === 1) {
-                return result.insertId;
-            } else {
-                return false;
-            }
+            await db.query(sql, values);
         } catch (error) {
             throw error;
-        } finally {
-            await this.db.close();
         }
     }
 }

@@ -1,8 +1,5 @@
-const ConnectionDatabase = require("./ConnectionDatabase");
-
 class ArrivalDestination {
     constructor(formData) {
-        this.db = new ConnectionDatabase();
         this.meal = {
             type: formData.mealType,
             start: formData.mealStart,
@@ -68,10 +65,8 @@ class ArrivalDestination {
         return this.tripId;
     }
 
-    async insertDataArrivalDestination() {
+    async insertDataArrivalDestination(db) {
         try {
-            await this.db.connect();
-
             const sql = `INSERT INTO Chegada_Destino 
             (id_viagem, refeicao_tipo, refeicao_inicio, refeicao_fim, tempo_espera_tipo, tempo_espera_inicio, tempo_espera_fim, retorno, hora) 
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);`
@@ -90,20 +85,9 @@ class ArrivalDestination {
 
             console.log("Valores Chegada de Destino " + values);
 
-            const result =  await this.db.query(sql, values);
-
-            if (result.affectedRows === 1) {
-                const lastInsertIdResult = await this.db.query('SELECT LAST_INSERT_ID() as id');
-                const lastInsertId = lastInsertIdResult[0].id;
-                return lastInsertId;
-            } else {
-                return false;
-            }
-
+            await db.query(sql, values);
         } catch (error) {
             throw error;
-        } finally {
-            this.db.close();
         }
     }
 }

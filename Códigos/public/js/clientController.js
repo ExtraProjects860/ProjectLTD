@@ -9,6 +9,7 @@ class ClientController {
         this.botaoSalvar = document.getElementById("btn-save");
 
         this.botaoSalvar.addEventListener("click", () => {
+            this.armazenarDados();
             this.mostrarPopup();
         });
         this.modal = document.getElementById("modal");
@@ -182,69 +183,67 @@ class ClientController {
 
             pagina4: `
             <div class="row">
-            <div class="col">
-                <label for="parada1_p4">Parada 1</label>
-                <select name="parada1_p4" id="parada1_p4">
-                    <option value="">teste</option>
-                </select>
-            </div>
-            <div class="col">
-                <label for="parada2_p4">Parada 2</label>
-                <select name="parada2_p4" id="parada2_p4">
-                    <option value="">teste</option>
-                </select>
-            </div>
-            <div class="col">
-                <label for="parada3_p4">Parada 3</label>
-                <select name="parada3_p4" id="parada3_p4">
-                    <option value="">teste</option>
-                </select>
-            </div>
-            <div class="col">
-                    <label for="parada4_p4">Parada 4</label>
-                    <select name="parada4_p4" id="parada4_p4">
+                <div class="col">
+                    <label for="parada1_p4">Parada 1</label>
+                    <select name="parada1_p4" id="parada1_p4">
                         <option value="">teste</option>
                     </select>
+                </div>
+                <div class="col">
+                    <label for="parada2_p4">Parada 2</label>
+                    <select name="parada2_p4" id="parada2_p4">
+                        <option value="">teste</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <label for="parada3_p4">Parada 3</label>
+                    <select name="parada3_p4" id="parada3_p4">
+                        <option value="">teste</option>
+                    </select>
+                </div>
+                <div class="col">
+                        <label for="parada4_p4">Parada 4</label>
+                        <select name="parada4_p4" id="parada4_p4">
+                            <option value="">teste</option>
+                        </select>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <label for="inicio1_p4">Inicio</label>
-                <input type="time" name="inicio1_p4" id="inicio1_p4">
+            <div class="row">
+                <div class="col">
+                    <label for="inicio1_p4">Inicio</label>
+                    <input type="time" name="inicio1_p4" id="inicio1_p4">
+                </div>
+                <div class="col">
+                    <label for="inicio2_p4">Inicio</label>
+                    <input type="time" name="inicio2_p4" id="inicio2_p4">
+                </div>
+                <div class="col">
+                    <label for="inicio3_p4">Inicio</label>
+                    <input type="time" name="inicio3_p4" id="inicio3_p4">
+                </div>
+                <div class="col">
+                    <label for="inicio4_p4">Inicio</label>
+                    <input type="time" name="inicio4_p4" id="inicio4_p4">
+                </div>
             </div>
-            <div class="col">
-                <label for="inicio2_p4">Inicio</label>
-                <input type="time" name="inicio2_p4" id="inicio2_p4">
+            <div class="row">
+                <div class="col">
+                    <label for="fim1_p4">Fim</label>
+                    <input type="time" name="fim1_p4" id="fim1_p4">
+                </div>
+                <div class="col">
+                    <label for="fim2_p4">Fim</label>
+                    <input type="time" name="fim2_p4" id="fim2_p4">
+                </div>
+                <div class="col">
+                    <label for="fim3_p4">Fim</label>
+                    <input type="time" name="fim3_p4" id="fim3_p4">
+                </div>
+                <div class="col">
+                    <label for="fim4_p4">Fim</label>
+                    <input type="time" name="fim4_p4" id="fim4_p4">
+                </div>
             </div>
-            <div class="col">
-                <label for="inicio3_p4">Inicio</label>
-                <input type="time" name="inicio3_p4" id="inicio3_p4">
-            </div>
-            <div class="col">
-                <label for="inicio4_p4">Inicio</label>
-                <input type="time" name="inicio4_p4" id="inicio4_p4">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <label for="fim1_p4">Fim</label>
-                <input type="time" name="fim1_p4" id="fim1_p4">
-            </div>
-            <div class="col">
-                <label for="fim2_p4">Fim</label>
-                <input type="time" name="fim2_p4" id="fim2_p4">
-            </div>
-            <div class="col">
-                <label for="fim3_p4">Fim</label>
-                <input type="time" name="fim3_p4" id="fim3_p4">
-            </div>
-            <div class="col">
-                <label for="fim4_p4">Fim</label>
-                <input type="time" name="fim4_p4" id="fim4_p4">
-            </div>
-        </div>
-        <div>
-        </div>
             `,
         };
 
@@ -385,6 +384,7 @@ class ClientController {
     }
 
     async enviarFormulario() {
+        this.armazenarDados();
         const formData = new FormData();
         for (const key in this.dadosFormulario) {
             formData.append(key, this.dadosFormulario[key]);
@@ -406,7 +406,7 @@ class ClientController {
                 console.error('Erro ao enviar formulário', response.statusText);
             }
         } catch (error) {
-            console.error('Erro ao enviar formulário', error);
+            console.error('Erro ao enviar formulário catch', error);
         }
     }
 
