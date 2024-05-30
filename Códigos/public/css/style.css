@@ -225,31 +225,33 @@ main {
     cursor: pointer;
   }
 
-  #cancelar {
-    border: none;
-    border-radius: 1vh;
-    height: 3vh;
-    width: 14vh;
-    background-color: #FE787F;
-    transition: 1s ease;
-  }
-
-  #cancelar:hover {
-    background-color: #db686e;
-  }
-
+  #cancelar,
   #confirmar {
-    border: none;
-    border-radius: 1vh;
-    height: 3vh;
-    width: 14vh;
-    margin: 0 1vh;
-    background-color: #8BD9CA;
-    transition: 1s ease;
+      border: none;
+      border-radius: 1vh;
+      height: 3vh;
+      width: 14vh;
+      transition: background-color 0.3s ease;
+      color: white;
+      box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.349);
+      cursor: pointer;
   }
-
+  
+  #cancelar {
+      background-color: #FE787F;
+  }
+  
+  #cancelar:hover {
+      background-color: #db686e;
+  }
+  
+  #confirmar {
+      background-color: #8BD9CA;
+      margin-left: 1vh;
+  }
+  
   #confirmar:hover {
-    background-color: #7cc0b2;
+      background-color: #7cc0b2;
   }
 
   .btns{

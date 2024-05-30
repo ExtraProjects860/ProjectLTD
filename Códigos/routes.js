@@ -17,6 +17,7 @@ router.get("/", (req, res) => {
 
 router.post("/registrar", upload.none(), async (req, res) => {
   const db = new ConnectionDatabase();
+  let nextId = null;
 
   try {
     await db.connect();
@@ -83,17 +84,29 @@ router.post("/registrar", upload.none(), async (req, res) => {
     await routeToFactory.insertDataToFactory(db, formData.idViagem3);
     await routeBackFactory.insertDataBackFactory(db, formData.idViagem3);
 
+    const insertedId = formData.idViagem3;
+    nextId = await ArrivalDestination.checkMaxId(db);
+
     await db.commit();
 
     console.log("Dados inseridos com sucesso!");
-    res.status(200).send("Submissão do formulário bem-sucedida");
-} catch (error) {
-    await db.rollback();
-    console.error("Erro ao registrar os dados:", error);
-    res.status(500).send("Ocorreu um erro ao processar a solicitação.");
-} finally {
-    await db.close();
-}
+    console.log(`ID máximo na tabela ${nextId}`)
+    res.status(200).json({ message: "Submissão do formulário bem-sucedida", insertedId: insertedId, nextId: nextId });
+  } catch (error) {
+      await db.rollback();
+
+      console.error("Erro ao registrar os dados:", error);
+      
+      if (error.code === 'ER_DUP_ENTRY') {
+        nextId = await ArrivalDestination.checkMaxId(db);
+        res.status(409).json({ message: "Entrada duplicada detectada. Por favor, use um ID de viagem diferente.", nextId: nextId });
+      } else {
+        nextId = await ArrivalDestination.checkMaxId(db);
+        res.status(500).json({ message: "Ocorreu um erro ao processar a solicitação.", nextId: nextId });
+      }
+  } finally {
+      await db.close();
+  }
 });
 
 module.exports = router;

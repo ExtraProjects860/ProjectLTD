@@ -90,6 +90,23 @@ class ArrivalDestination {
             throw error;
         }
     }
+
+    static async checkMaxId(db) {
+        try {
+            const sql = `SELECT MAX(id_viagem) AS maxId FROM Chegada_Destino`;
+    
+            const [result] = await db.query(sql);
+            
+            if (result && result.maxId !== null) {
+                return result.maxId + 1;
+            } else {
+                // Se não houver resultados, retorna o próximo ID sendo 1
+                return 1;
+            }
+        } catch (error) {
+            throw error;
+        }
+    }    
 }
 
 module.exports = ArrivalDestination;
