@@ -53,7 +53,7 @@ Este é um projeto desenvolvido como parte de um trabalho acadêmico ou profissi
 Este projeto está sendo desenvolvido pela equipe de Desenvolvimento Web:
 
 - [Alana Karine](https://github.com/AlanaK2)
-- [Davi Nascimento](https://github.com/zedark860)
+- [Davi Nascimento](https://github.com/DaviRodrigues)
 
 ## Licença
 
